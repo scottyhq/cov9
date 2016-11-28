@@ -1,2 +1,7 @@
 .pyc
+.ipynb_checkpoints/
 __pycache__
+.pdf 
+.png
+.tif
+.vrt

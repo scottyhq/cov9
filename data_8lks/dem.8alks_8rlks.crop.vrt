@@ -1,0 +1,11 @@
+<VRTDataset rasterXSize="636" rasterYSize="420">
+    <SRS>EPSG:4326</SRS>
+    <GeoTransform>3.5, 8.0, 0.0, 3.5, 0.0, 8.0</GeoTransform>
+    <VRTRasterBand band="1" dataType="Int16" subClass="VRTRawRasterBand">
+        <SourceFilename relativeToVRT="1">dem.8alks_8rlks.crop</SourceFilename>
+        <ByteOrder>LSB</ByteOrder>
+        <ImageOffset>0</ImageOffset>
+        <PixelOffset>2</PixelOffset>
+        <LineOffset>1272</LineOffset>
+    </VRTRasterBand>
+</VRTDataset>
