@@ -3,7 +3,7 @@
 Functions for forward volcano-geodesy analytic models
 
 to run benchmark,
->>> python mogi_simple.py
+>>> python mogi.py
 
 Author: Scott Henderson
 Date: 8/31/2012
@@ -23,8 +23,8 @@ def invert(xargs,xcen,ycen,depth,dV):
     X,Y,incidence,heading = xargs
     ux, uy, uz = forward(X,Y,xcen,ycen,depth,dV)
     dataVec = np.dstack([ux, uy, uz])
-    cart2los = util.get_cart2los(incidence,heading)
-    los = -np.sum(dataVec * cart2los, axis=2)
+    cart2los = -get_cart2los(incidence,heading)
+    los = np.sum(dataVec * cart2los, axis=2)
 
     return los.ravel()
 
@@ -104,6 +104,20 @@ def pol2cart(theta,r):
     x2 = r * np.sin(theta)
     return x1,x2
 
+def get_cart2los(incidence,heading):
+    '''
+    coefficients for projecting cartesian displacements into LOS vector
+    '''
+    incidence = np.deg2rad(incidence)
+    heading = np.deg2rad(heading)
+
+    EW2los = np.sin(heading) * np.sin(incidence)
+    NS2los = np.cos(heading) * np.sin(incidence)
+    Z2los = -np.cos(incidence)
+
+    cart2los = np.dstack([EW2los, NS2los, Z2los])
+
+    return cart2los
 
 # =====================
 # Benchmark
